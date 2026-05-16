@@ -154,6 +154,7 @@
       max-width:700px;
       margin:0 auto 60px;
       line-height:1.8;
+        color:#111111;
     }
 
     /* LISTE STATT HORIZONTAL */
@@ -172,40 +173,59 @@
     }
 
     .card-inner{
-    position:relative;
-    width:100%;
-    height:100%;
-    transition:transform 0.8s;
-    transform-style:preserve-3d;
+  position:relative;
 
-    will-change:transform;
-    }
+  width:100%;
+  height:100%;
+
+  transition:transform 0.8s;
+
+  transform-style:preserve-3d;
+  -webkit-transform-style:preserve-3d;
+
+  will-change:transform;
+}
 
     .card.active .card-inner{
       transform:rotateY(180deg);
     }
 
     .card-front,
-    .card-back{
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    border-radius:28px;
-    overflow:hidden;
-    backface-visibility:hidden;
-    }
+.card-back{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  border-radius:28px;
+
+  overflow:hidden;
+
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+
+  -webkit-transform-style:preserve-3d;
+  transform-style:preserve-3d;
+
+  transform:translateZ(0);
+}
     /* FRONT */
     .card-front{
-      display:flex;
-      align-items:flex-end;
-      padding:28px;
-      position:relative;
-      border:1px solid rgba(255,255,255,0.08);
-      background-size:cover;
-      background-position:center;
-    }
+  display:flex;
+  align-items:flex-end;
+  padding:28px;
+
+  position:absolute;
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  background-size:cover;
+  background-position:center;
+
+  transform:rotateY(0deg) translateZ(1px);
+}
 
     .card-front::before{
   content:"";
@@ -254,24 +274,24 @@
 
     /* BACK */
     .card-back{
-    position:absolute;
-    inset:0;
+  position:absolute;
+  inset:0;
 
-    background:linear-gradient(180deg,#16161f,#1d1d29);
+  background:linear-gradient(180deg,#16161f,#1d1d29);
 
-    transform:rotateY(180deg);
+  transform:rotateY(180deg) translateZ(1px);
 
-    padding:32px;
+  padding:32px;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
 
-    border-radius:28px;
-    border:1px solid rgba(255,255,255,0.08);
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,0.08);
 
-    overflow:hidden;
-    }
+  overflow:hidden;
+}
 
     .card-back h3{
       font-size:30px;
@@ -422,6 +442,85 @@
 .card-tag{
   color:white;
 }
+.custom-service{
+  padding:40px 20px 140px;
+}
+
+.custom-box{
+  max-width:900px;
+  margin:auto;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,210,0,0.12),
+    rgba(0,223,162,0.08)
+  );
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:32px;
+
+  padding:50px 35px;
+
+  text-align:center;
+
+  backdrop-filter:blur(12px);
+}
+
+.custom-box h2{
+  font-size:36px;
+  margin-bottom:20px;
+}
+
+.custom-box p{
+  color:#000000;
+  line-height:1.8;
+  max-width:700px;
+  margin:0 auto 18px;
+}
+
+.custom-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  margin-top:18px;
+
+  background:linear-gradient(
+    135deg,
+    #FFD200,
+    #ffbf00
+  );
+
+  color:#111;
+  text-decoration:none;
+
+  padding:16px 26px;
+
+  border-radius:999px;
+
+  font-weight:800;
+
+  transition:0.3s;
+}
+
+.custom-btn:hover{
+  transform:translateY(-2px);
+}
+
+@media(max-width:768px){
+
+  .custom-box{
+    padding:38px 24px;
+  }
+
+  .custom-box h2{
+    font-size:28px;
+  }
+
+}
   </style>
 </head>
 
@@ -448,7 +547,7 @@
       <div class="hero-buttons">
         <a href="#angebote" class="btn btn-primary">Services ansehen</a>
 
-        <a href="https://wa.me/41790000000" class="btn btn-secondary">
+        <a href="https://wa.me/41786030377" class="btn btn-secondary">
           WhatsApp Kontakt
         </a>
       </div>
@@ -476,7 +575,7 @@
 
             <div class="front-content">
               <div class="card-tag">Beliebt</div>
-              <h3>Van Rental</h3>
+              <h3>Fahrzeug Vermietung</h3>
               <div class="price">ab CHF 89 / Tag</div>
             </div>
 
@@ -487,19 +586,22 @@
               <h3>Fahrzeug Vermietung</h3>
 
               <p>
-                Flexible Van-Miete für Reisen, Transporte, Wochenendtrips oder spontane Einsätze. Inklusiv volle Ladung!
-              </p>
+                Flexible Van-Miete für Wochenendtrips, Umzüge, Transporte oder spontane Abenteuer.
+            Viel Stauraum, modernes Elektrofahrzeug und ideal für Stadt & Langstrecke. Inklusive voll geladen Batterie mit bis zu 200km Reichweite.
+                </p>
 
-              <div class="features">
-                <span>Flexibel</span>
+                <div class="features">
+                <span>Elektro Van</span>
                 <span>Großer Stauraum</span>
-                <span>Versichert</span>
-              </div>
-            </div>
+                <span>Roadtrips</span>
+                <span>Business</span>
+                <span>Flexibel</span>
+                </div>
+                </div>
 
-            <div class="small">
-              Ideal für privat & business.
-            </div>
+                <div class="small">
+                Perfekt für Reisen, Transporte oder spontane Einsätze.
+                </div>
           </div>
 
         </div>
@@ -514,7 +616,7 @@
 
             <div class="front-content">
               <div class="card-tag">Festival</div>
-              <h3>Power Station</h3>
+              <h3>Mobile Stromversorgung</h3>
               <div class="price">ab CHF 149</div>
             </div>
 
@@ -525,19 +627,23 @@
               <h3>Event Stromstation</h3>
 
               <p>
-                Mobile Energieversorgung für Festivals, Outdoor-Events und temporäre Setups.
-              </p>
+  Mobile Stromversorgung für Festivals, Outdoor-Events, Märkte oder Baustellen.
+  Ideal zum Laden von Handys, Kameras, Vapes, Lautsprechern, Beleuchtung,
+  Laptops oder kleinen Geräten – überall dort, wo kein Strom verfügbar ist.
+</p>
 
-              <div class="features">
-                <span>Outdoor</span>
-                <span>Plug & Play</span>
-                <span>Events</span>
-              </div>
-            </div>
+<div class="features">
+  <span>Handys laden</span>
+  <span>Beleuchtung</span>
+  <span>Lautsprecher</span>
+  <span>Outdoor</span>
+  <span>Events</span>
+</div>
+</div>
 
-            <div class="small">
-              Strom genau dort wo du ihn brauchst.
-            </div>
+<div class="small">
+  Strom genau dort wo du ihn brauchst.
+</div>
           </div>
 
         </div>
@@ -552,7 +658,7 @@
 
             <div class="front-content">
               <div class="card-tag">Marketing</div>
-              <h3>Rolling Ads</h3>
+              <h3>Mobile Werbung</h3>
               <div class="price">ab CHF 199</div>
             </div>
 
@@ -563,19 +669,22 @@
               <h3>Folierung & Werbung</h3>
 
               <p>
-                Nutze den Van als mobile Werbefläche für Kampagnen, Brands oder lokale Werbung.
-              </p>
+  Nutze den Van als mobile Werbefläche für Kampagnen, Brands oder lokale Werbung.
+  Ideal für Startups, Events, Restaurants oder Promotion-Aktionen mit hoher Sichtbarkeit.
+</p>
 
-              <div class="features">
-                <span>Branding</span>
-                <span>Hohe Sichtbarkeit</span>
-                <span>Modern</span>
-              </div>
-            </div>
+<div class="features">
+  <span>Branding</span>
+  <span>Promotion</span>
+  <span>Mobile Werbung</span>
+  <span>Events</span>
+  <span>Hohe Reichweite</span>
+</div>
 
-            <div class="small">
-              Werbung die auffällt.
-            </div>
+<div class="small">
+  Werbung die sich bewegt und auffällt.
+</div>
+</div>
           </div>
 
         </div>
@@ -590,7 +699,7 @@
 
             <div class="front-content">
               <div class="card-tag">Express</div>
-              <h3>IKEA Service</h3>
+              <h3>Möbeltransport</h3>
               <div class="price">ab CHF 79</div>
             </div>
 
@@ -601,19 +710,23 @@
               <h3>Möbeltransport</h3>
 
               <p>
-                Möbel kaufen ohne Stress – wir holen, liefern und transportieren zuverlässig.
-              </p>
+  Möbel kaufen ohne Stress.
+  Wir holen deine Einkäufe ab und liefern sie direkt zu dir nach Hause.
+  Sei es von Tutti, Ricardo, IKEA oder anderen Shops, wir kümmern uns um den Transport, damit du dich entspannt zurücklehnen kannst.
+</p>
 
-              <div class="features">
-                <span>Schnell</span>
-                <span>Transport</span>
-                <span>IKEA</span>
-              </div>
-            </div>
+<div class="features">
+  <span>IKEA</span>
+  <span>Möbeltransport</span>
+  <span>Lieferung</span>
+  <span>Umzug</span>
+  <span>Schnell</span>
+</div>
+</div>
 
-            <div class="small">
-              Auch kurzfristig möglich.
-            </div>
+<div class="small">
+  Einfach bestellen und entspannt bleiben.
+</div>
           </div>
 
         </div>
@@ -628,7 +741,7 @@
 
             <div class="front-content">
               <div class="card-tag">Cleanup</div>
-              <h3>Easy Disposal</h3>
+              <h3>Entsorgung</h3>
               <div class="price">ab CHF 59</div>
             </div>
 
@@ -639,19 +752,22 @@
               <h3>Entsorgungs Service</h3>
 
               <p>
-                Wir holen Sperrmüll, Karton, Altmetall oder Elektrogeräte direkt bei dir ab.
-              </p>
+  Wir entsorgen Karton, Sperrmüll, Altmetall, Glass oder Elektrogeräte direkt bei dir.
+  Schnell, unkompliziert und ohne dass du selbst zur Entsorgung fahren musst.
+</p>
 
-              <div class="features">
-                <span>Abholung</span>
-                <span>Recycling</span>
-                <span>Einfach</span>
-              </div>
-            </div>
+<div class="features">
+  <span>Sperrmüll</span>
+  <span>Elektrogeräte</span>
+  <span>Recycling</span>
+  <span>Abholung</span>
+  <span>Einfach</span>
+</div>
+</div>
 
-            <div class="small">
-              Schnell & unkompliziert.
-            </div>
+<div class="small">
+  Schnell und unkompliziert entsorgen lassen.
+</div>
           </div>
 
         </div>
@@ -666,7 +782,7 @@
 
             <div class="front-content">
               <div class="card-tag">Party</div>
-              <h3>Photo Booth</h3>
+              <h3>Mobile Fotobox</h3>
               <div class="price">ab CHF 129</div>
             </div>
 
@@ -677,14 +793,17 @@
               <h3>Mobile Fotobox</h3>
 
               <p>
-                Unvergessliche Momente mit cooler Fotobox für Hochzeiten, Geburtstage & Events.
-              </p>
+  Mobile Fotobox für Hochzeiten, Geburtstage, Firmenfeiern oder Festivals.
+  Sofort Erinnerungen festhalten und einzigartige Momente mit Freunden teilen.
+</p>
 
-              <div class="features">
-                <span>Events</span>
-                <span>Fotos</span>
-                <span>Fun</span>
-              </div>
+<div class="features">
+  <span>Events</span>
+  <span>Hochzeiten</span>
+  <span>Party</span>
+  <span>Sofortbilder</span>
+  <span>Fun</span>
+</div>
             </div>
 
             <div class="small">
@@ -699,10 +818,34 @@
 
   </section>
 
+  <section class="custom-service">
+
+  <div class="custom-box">
+
+    <h2>Nicht das Richtige dabei?</h2>
+
+    <p>
+      PAPAGO steht für flexible Lösungen rund um Transport, Events,
+      mobile Services und spontane Ideen.
+      Auch wenn dein Wunsch hier nicht aufgelistet ist –
+      schreib uns einfach direkt auf WhatsApp.
+    </p>
+
+    <p>
+      Oft finden wir trotzdem eine passende Lösung oder können etwas individuell organisieren.
+    </p>
+
+    <a href="https://wa.me/41786030377" class="custom-btn">
+      💬 Individuelle Anfrage senden
+    </a>
+
+  </div>
+
+</section>
   <div class="footer-space"></div>
 
   <div class="floating-contact">
-    <a href="https://wa.me/41790000000">
+    <a href="https://wa.me/41786030377">
       💬 Jetzt via WhatsApp anfragen
     </a>
   </div>
@@ -727,7 +870,7 @@
 
     <div class="footer-links">
       <a href="#angebote">Services</a>
-      <a href="https://wa.me/41790000000">Kontakt</a>
+      <a href="https://wa.me/41786030377">Kontakt</a>
       <a href="#">Impressum</a>
     </div>
 
